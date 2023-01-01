@@ -1,0 +1,129 @@
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+local Rayfield = loadstring(game:HttpGet(('https://raw.githubusercontent.com/teehee567/Rayfield-Backupt/main/source')))()
+	
+
+local Window = Rayfield:CreateWindow({
+	Name = "Ananın Amı Private|PerfectusMim#0001",
+	LoadingTitle = "Loading Perfectus|AES",
+	LoadingSubtitle = "by Perfectus",
+	ConfigurationSaving = {
+		Enabled = true,
+		FolderName = "Lcopium", -- Create a custom folder for your hub/game
+		FileName = "Anime Evolutions"
+	},
+        Discord = {
+        	Enabled = true,
+        	Invite = "37NZHy9gW3", -- The Discord invite code, do not include discord.gg/
+        	RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+        },
+	KeySystem = false, -- Set this to true to use our key system
+})
+
+-- -------------------------------------------------------------------------- --
+--                                 Open Menus                                 --
+-- -------------------------------------------------------------------------- --
+
+
+local Tab1 = Window:CreateTab("Menus", 4483362458)
+Tab1:CreateSection("Main GUIS")
+
+Tab1:CreateButton({
+	Name = "Aktif Değil",
+	Callback = function()
+		services.CallEvent:Fire({"OpenFrame", "Aktif Değil"})
+	end,
+})
+
+
+-- -------------------------------- Movement -------------------------------- --
+local Tab2 = Window:CreateTab("Movement", 4483362458)
+
+Tab2:CreateSection("Normal")
+local walkspeed
+local delrunning = false
+Tab2:CreateSlider({
+	Name = "Walk Speed Normal",
+	Range = {0, 500},
+	Increment = 10,
+	Suffix = "",
+	CurrentValue = 0,
+	Flag = "Walk Speed",
+	Callback = function(Value)
+		walkspeed = Value
+        if Value ~= 0 then
+            delrunning = true
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        end
+	end,
+})
+
+local jumppower
+local deljumping = false
+Tab2:CreateSlider({
+	Name = "Jump Power Normal",
+	Range = {0, 500},
+	Increment = 10,
+	Suffix = "",
+	CurrentValue = 0,
+	Flag = "Jump Power",
+	Callback = function(Value)
+		jumppower = Value
+        if Value ~= 0 then
+            deljumping = true
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+        end
+	end,
+})
+
+Tab2:CreateSection("Ultra")
+local walkspeedultra
+local delrunningultra = false
+Tab2:CreateSlider({
+	Name = "Walk Speed Ultra",
+	Range = {0, 50000000},
+	Increment = 1000,
+	Suffix = "",
+	CurrentValue = 0,
+	Flag = "Walk Speed Ultra",
+	Callback = function(Value)
+		walkspeedultra = Value
+        if Value ~= 0 then
+            delrunningultra = true
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        end
+	end,
+})
+
+local jumppowerultra
+local deljumpingultra = false
+Tab2:CreateSlider({
+	Name = "Jump Power Ultra",
+	Range = {0, 50000000},
+	Increment = 1000,
+	Suffix = "",
+	CurrentValue = 0,
+	Flag = "Jump Power Ultra",
+	Callback = function(Value)
+		jumppowerultra = Value
+        if Value ~= 0 then
+            deljumpingultra = true
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+        end
+	end,
+})
+		
+
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+
+
+
+Rayfield:LoadConfiguration()
